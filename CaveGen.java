@@ -713,7 +713,7 @@ public class CaveGen {
         slug.append(specialCaveInfoName);
         slug.append(sublevel);
         slug.append(';');
-        slug.append(String.format("%08X", initialSeed));
+        slug.append(String.format("0x%08X", initialSeed));
         slug.append(";[");
 
         for (MapUnit m: placedMapUnits) {
