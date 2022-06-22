@@ -717,7 +717,7 @@ public class CaveGen {
         slug.append(";[");
 
         for (MapUnit m: placedMapUnits) {
-            slug.append(String.format("%s,x%dz%dr%d", m.name, m.offsetX, m.offsetZ, m.rotation));
+            slug.append(String.format("%s,x%dz%dr%d;", m.name, m.offsetX, m.offsetZ, m.rotation));
         }
         slug.append("];");
 
