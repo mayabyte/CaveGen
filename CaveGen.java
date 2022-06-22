@@ -727,7 +727,11 @@ public class CaveGen {
         ArrayList<String> spawnObjectSlugs = new ArrayList<>();
         for (Teki t: placedTekis) {
             StringBuilder soSlug = new StringBuilder();
-            soSlug.append(t.tekiName);
+            String name = t.tekiName;
+            if (!name.equals("Fart") && name.startsWith("F")) {
+                name = name.substring(1);
+            }
+            soSlug.append(name);
             soSlug.append(",carrying:");
             soSlug.append(t.itemInside == null ? "none" : t.itemInside);
             soSlug.append(",spawn_method:");
