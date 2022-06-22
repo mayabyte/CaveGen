@@ -756,7 +756,7 @@ public class CaveGen {
         for (Gate g: placedGates) {
             StringBuilder soSlug = new StringBuilder();
             soSlug.append("GATE,hp");
-            soSlug.append(g.life);
+            soSlug.append((int)g.life);
             soSlug.append(",x");
             soSlug.append((int)g.posX);
             soSlug.append('z');
