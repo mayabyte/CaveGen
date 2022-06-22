@@ -497,9 +497,9 @@ public class CaveGen {
             seed = initialSeed;
 
             if (prints && (numToGenerate < 4096 && !CaveGen.judgeActive || initialSeed % 4096 == 0)) {
-                System.out.println("Generating " + specialCaveInfoName + "-" + sublevel + " on seed " + Drawer.seedToString(initialSeed));
+                //System.out.println("Generating " + specialCaveInfoName + "-" + sublevel + " on seed " + Drawer.seedToString(initialSeed));
                 if (CaveViewer.active) {
-                    CaveViewer.caveViewer.reportBuffer.append("Generating " + specialCaveInfoName + "-" + sublevel + " on seed " + Drawer.seedToString(initialSeed) + "\n");
+                    //CaveViewer.caveViewer.reportBuffer.append("Generating " + specialCaveInfoName + "-" + sublevel + " on seed " + Drawer.seedToString(initialSeed) + "\n");
                 }
             }
 
@@ -703,6 +703,108 @@ public class CaveGen {
         if (!noWayPointGraph) {
             buildWayPointGraph();
         }
+
+        printSlug();
+    }
+
+    void printSlug() {
+        StringBuilder slug = new StringBuilder();
+
+        slug.append(specialCaveInfoName);
+        slug.append(sublevel);
+        slug.append(';');
+        slug.append(String.format("%08X", initialSeed));
+        slug.append(";[");
+
+        for (MapUnit m: placedMapUnits) {
+            slug.append(String.format("%s,x%dz%dr%d", m.name, m.offsetX, m.offsetZ, m.rotation));
+        }
+        slug.append("];");
+
+        ArrayList<String> spawnObjectSlugs = new ArrayList<>();
+        for (Teki t: placedTekis) {
+            StringBuilder soSlug = new StringBuilder();
+            soSlug.append(t.tekiName);
+            soSlug.append(",carrying:");
+            soSlug.append(t.itemInside == null ? "none" : t.itemInside);
+            soSlug.append(",spawn_method:");
+            soSlug.append(t.fallType);
+            soSlug.append(",x");
+            soSlug.append((int)t.posX);
+            soSlug.append('z');
+            soSlug.append((int)t.posZ);
+            soSlug.append('r');
+            soSlug.append((int)Math.toDegrees(t.ang));
+            soSlug.append(';');
+            spawnObjectSlugs.add(soSlug.toString());
+        }
+        for (Item i: placedItems) {
+            StringBuilder soSlug = new StringBuilder();
+            soSlug.append(i.itemName);
+            soSlug.append(",x");
+            soSlug.append((int)i.posX);
+            soSlug.append('z');
+            soSlug.append((int)i.posZ);
+            soSlug.append('r');
+            soSlug.append((int)Math.toDegrees(i.ang));
+            soSlug.append(';');
+            spawnObjectSlugs.add(soSlug.toString());
+        }
+        for (Gate g: placedGates) {
+            StringBuilder soSlug = new StringBuilder();
+            soSlug.append("GATE,hp");
+            soSlug.append(g.life);
+            soSlug.append(",x");
+            soSlug.append((int)g.posX);
+            soSlug.append('z');
+            soSlug.append((int)g.posZ);
+            soSlug.append('r');
+            soSlug.append((int)Math.toDegrees(g.ang));
+            soSlug.append(';');
+            spawnObjectSlugs.add(soSlug.toString());
+        }
+        if (placedHole != null) {
+            StringBuilder soSlug = new StringBuilder();
+            soSlug.append("hole,x");
+            soSlug.append((int)placedHole.x);
+            soSlug.append('z');
+            soSlug.append((int)placedHole.z);
+            soSlug.append('r');
+            soSlug.append((int)Math.toDegrees(placedHole.ang));
+            soSlug.append(';');
+            spawnObjectSlugs.add(soSlug.toString());
+        }
+        if (placedGeyser != null) {
+            StringBuilder soSlug = new StringBuilder();
+            soSlug.append("geyser,x");
+            soSlug.append((int)placedGeyser.x);
+            soSlug.append('z');
+            soSlug.append((int)placedGeyser.z);
+            soSlug.append('r');
+            soSlug.append((int)Math.toDegrees(placedGeyser.ang));
+            soSlug.append(';');
+            spawnObjectSlugs.add(soSlug.toString());
+        }
+        if (placedStart != null) {
+            StringBuilder soSlug = new StringBuilder();
+            soSlug.append("ship,x");
+            soSlug.append((int)placedStart.x);
+            soSlug.append('z');
+            soSlug.append((int)placedStart.z);
+            soSlug.append('r');
+            soSlug.append((int)Math.toDegrees(placedStart.ang));
+            soSlug.append(';');
+            spawnObjectSlugs.add(soSlug.toString());
+        }
+
+        Collections.sort(spawnObjectSlugs);
+        slug.append('[');
+        for (String s: spawnObjectSlugs) {
+            slug.append(s);
+        }
+        slug.append("];");
+
+        System.out.println(slug.toString());
     }
 
     // Generate Map Units ---------------------------------------------------------------------
