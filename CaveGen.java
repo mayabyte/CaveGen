@@ -736,8 +736,6 @@ public class CaveGen {
             soSlug.append((int)t.posX);
             soSlug.append('z');
             soSlug.append((int)t.posZ);
-            soSlug.append('r');
-            soSlug.append((int)Math.toDegrees(t.ang));
             soSlug.append(';');
             spawnObjectSlugs.add(soSlug.toString());
         }
@@ -748,8 +746,6 @@ public class CaveGen {
             soSlug.append((int)i.posX);
             soSlug.append('z');
             soSlug.append((int)i.posZ);
-            soSlug.append('r');
-            soSlug.append((int)Math.toDegrees(i.ang));
             soSlug.append(';');
             spawnObjectSlugs.add(soSlug.toString());
         }
@@ -761,8 +757,6 @@ public class CaveGen {
             soSlug.append((int)g.posX);
             soSlug.append('z');
             soSlug.append((int)g.posZ);
-            soSlug.append('r');
-            soSlug.append((int)Math.toDegrees(g.ang));
             soSlug.append(';');
             spawnObjectSlugs.add(soSlug.toString());
         }
@@ -772,8 +766,6 @@ public class CaveGen {
             soSlug.append((int)placedHole.posX);
             soSlug.append('z');
             soSlug.append((int)placedHole.posZ);
-            soSlug.append('r');
-            soSlug.append((int)Math.toDegrees(placedHole.ang));
             soSlug.append(';');
             spawnObjectSlugs.add(soSlug.toString());
         }
@@ -783,8 +775,6 @@ public class CaveGen {
             soSlug.append((int)placedGeyser.posX);
             soSlug.append('z');
             soSlug.append((int)placedGeyser.posZ);
-            soSlug.append('r');
-            soSlug.append((int)Math.toDegrees(placedGeyser.ang));
             soSlug.append(';');
             spawnObjectSlugs.add(soSlug.toString());
         }
@@ -794,8 +784,6 @@ public class CaveGen {
             soSlug.append((int)placedStart.posX);
             soSlug.append('z');
             soSlug.append((int)placedStart.posZ);
-            soSlug.append('r');
-            soSlug.append((int)Math.toDegrees(placedStart.ang));
             soSlug.append(';');
             spawnObjectSlugs.add(soSlug.toString());
         }
