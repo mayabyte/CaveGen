@@ -710,6 +710,9 @@ public class CaveGen {
     void printSlug() {
         StringBuilder slug = new StringBuilder();
 
+        if (specialCaveInfoName == "SC") {
+            specialCaveInfoName = "SmC";
+        }
         slug.append(specialCaveInfoName);
         slug.append(sublevel);
         slug.append(';');
@@ -766,9 +769,9 @@ public class CaveGen {
         if (placedHole != null) {
             StringBuilder soSlug = new StringBuilder();
             soSlug.append("hole,x");
-            soSlug.append((int)placedHole.x);
+            soSlug.append((int)placedHole.posX);
             soSlug.append('z');
-            soSlug.append((int)placedHole.z);
+            soSlug.append((int)placedHole.posZ);
             soSlug.append('r');
             soSlug.append((int)Math.toDegrees(placedHole.ang));
             soSlug.append(';');
@@ -777,9 +780,9 @@ public class CaveGen {
         if (placedGeyser != null) {
             StringBuilder soSlug = new StringBuilder();
             soSlug.append("geyser,x");
-            soSlug.append((int)placedGeyser.x);
+            soSlug.append((int)placedGeyser.posX);
             soSlug.append('z');
-            soSlug.append((int)placedGeyser.z);
+            soSlug.append((int)placedGeyser.posZ);
             soSlug.append('r');
             soSlug.append((int)Math.toDegrees(placedGeyser.ang));
             soSlug.append(';');
@@ -788,9 +791,9 @@ public class CaveGen {
         if (placedStart != null) {
             StringBuilder soSlug = new StringBuilder();
             soSlug.append("ship,x");
-            soSlug.append((int)placedStart.x);
+            soSlug.append((int)placedStart.posX);
             soSlug.append('z');
-            soSlug.append((int)placedStart.z);
+            soSlug.append((int)placedStart.posZ);
             soSlug.append('r');
             soSlug.append((int)Math.toDegrees(placedStart.ang));
             soSlug.append(';');
